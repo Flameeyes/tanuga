@@ -5,7 +5,11 @@
 
 import flask
 
-app = flask.Flask(__name__, static_url_path=None)
+from tanuga import tanuga
 
-if __name__ == '__main__':
-    app.run(host='localhost', port=8080, debug=True)
+web_app = flask.Flask(__name__, static_url_path=None)
+logic_app = tanuga.Tanuga()
+
+
+if __name__ == "__main__":
+    web_app.run(host="localhost", port=8080, debug=True)
