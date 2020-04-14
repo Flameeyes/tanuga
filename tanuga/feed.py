@@ -6,7 +6,7 @@ import datetime
 import logging
 from typing import Any, Optional, Sequence
 
-import requests
+from . import cache
 
 DEFAULT_REFRESH_DELTA = datetime.timedelta(minutes=2)
 
@@ -41,7 +41,7 @@ class Feed:
             logging.info("%s is already fresh.", self.configured_url)
 
     def force_fetch(self) -> None:
-        response = requests.get(self.fetch_url)
+        response = cache.get(self.fetch_url)
         response.raise_for_status()
 
         # We want to make sure to cache (at the very least in the current session) any
